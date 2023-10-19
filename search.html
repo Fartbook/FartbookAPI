@@ -1,0 +1,76 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Fartbook - Home</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">  
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  <dialog id="comment-modal">
+    <input id="comment-username" placeholder="Type in your name">
+    <input id="comment-text" placeholder="Type in the comment text">
+    <button onclick="document.getElementById('comment-modal').close()">Cancel</button>
+    <button id="comment-send">Send comment</button>
+  </dialog>
+  <!-- Add your site or application content here -->
+  <div id="header">
+    <h1>Fartbook</h1>
+    <p>Family friendly farts, anywhere you like!</p>
+  </div>
+  <div id="nav-bar">
+    <ul>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#"><i class="fas fa-user"></i> Profile (under construction)</a></li>
+      <li><a href="#" id="login-logout" ><i class="fas fa-sign-in-alt"></i> Login (under constuction)</a></li>
+    </ul>
+  </div>
+  <div id="container">
+    <!-- Main Content -->
+    <div id="content">
+      <!-- User Profile Section -->
+      <div class="user-profile">
+        <img src="/img/profile.webp" alt="User Profile Picture">
+        <h2 id="username"></h2>
+      </div>
+      <!-- Status Update Form -->
+      <div class="post">
+        <p id="postText"></p>
+        <div class="postActions">
+            <div class="commentAndShare">
+                <a id="comment-button" disabled=true>Comment is currently undergoing maintenance. In the meantime, try finding this post on the main page and commenting there.</a>
+            </div>
+            <div class="comments">
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    &copy; 2023 Fartbook.com
+    Created by two friends, <a href="https://github.com/Marko2155">Marko Camandioti</a> and <a href="https://github.com/paul0warren">Paul Warren</a>.
+  </div>
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="search.js"></script>
+
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>

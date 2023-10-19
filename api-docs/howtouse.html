@@ -1,0 +1,48 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat"><html lang="en-US" data-colors-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex">  <meta name="built-on" content="2023-10-19T21:36:04.547825"><meta name="build-number" content="${buildNumber}">       <title>How to use each endpoint | Fartbook API Documentation</title><script id="virtual-toc-data" type="application/json">[{"id":"103bd9b5_16","level":0,"title":"/api/fartbook [GET]","anchor":"#103bd9b5_16"},{"id":"103bd9b5_22","level":0,"title":"/api/fartbook [POST]","anchor":"#103bd9b5_22"},{"id":"103bd9b5_25","level":0,"title":"/api/fartbook/:id/comment","anchor":"#103bd9b5_25"},{"id":"103bd9b5_28","level":0,"title":"/api/fartbook/:id/search","anchor":"#103bd9b5_28"}]</script><script id="topic-shortcuts" type="application/json"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.1.5-b176/app.css" rel="stylesheet">   <link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><link rel="manifest" href="https://jetbrains.com/site.webmanifest"><link rel="mask-icon" href="https://jetbrains.com/safari-pinned-tab.svg" color="#000000"><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"/><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"/><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"/><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"/><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"/>  <meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="How to use each endpoint | Fartbook API Documentation"/><meta property="og:description" content=""/><meta property="og:image" content=""/><meta property="og:site_name" content="Fartbook API Documentation Help"/><meta property="og:type" content="website"/><meta property="og:locale" content="en_US"/><meta property="og:url" content="howtouse.html"/><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="How to use each endpoint | Fartbook API Documentation"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json"> { "@context": "http://schema.org", "@type": "WebPage", "@id": "howtouse.html#webpage", "url": "howtouse.html", "name": "How to use each endpoint | Fartbook API Documentation", "description": "", "image": "", "inLanguage":"en-US" }</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json"> { "@type": "WebSite", "@id": "/#website", "url": "/", "name": "Fartbook API Documentation Help" }</script><!-- End Schema.org --> <!-- Mermaid light/dark themes -->  <link rel="stylesheet" type="text/css" href="mermaid.css">  </head>     <body data-id="howtouse" data-main-title="How to use each endpoint" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}"  data-template="article"  data-breadcrumbs=""  >   <div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Fartbook API Documentation  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="howtouse"  id="howtouse.md"  >How to use each endpoint</h1>  <p id="103bd9b5_14">So you have the endpoints, but what now?</p><p id="103bd9b5_15">Well, here's how to use each one!</p><section class="chapter"><h2 id="103bd9b5_16" data-toc="103bd9b5_16">/api/fartbook [GET]</h2><p id="103bd9b5_17">This is the code from main.js, from the function fetchAndDisplayPosts():</p><div class="code-block" data-lang="none"         >
+fetch('/api/fartbook')
+.then((response) =&gt; response.json())
+.then((data) =&gt; {
+const fartbookPosts = document.getElementById('fartbook-posts');
+
+// Clear existing posts
+fartbookPosts.innerHTML = '';
+
+// Iterate through the fetched data and create post elements
+data.forEach((post) =&gt; {
+  const postElement = createPostElement(post);
+  fartbookPosts.appendChild(postElement);
+});
+
+})
+.catch((error) =&gt; console.error(error));
+</div></section><section class="chapter"><h2 id="103bd9b5_22" data-toc="103bd9b5_22">/api/fartbook [POST]</h2><p id="103bd9b5_23">This is the code i wrote for making posts, in JS:</p><div class="code-block" data-lang="none"         >
+// Function for creating posts
+function createPost(userName, postText) {
+  fetch('/api/fartbook', { method: 'POST', body: JSON.stringify({ username: userName, postText: postText, }), headers: { 'Content-type': 'application/json; charset=UTF-8', } });
+  sleep(500);
+  fetchAndDisplayPosts();
+}
+</div></section><section class="chapter"><h2 id="103bd9b5_25" data-toc="103bd9b5_25">/api/fartbook/:id/comment</h2><p id="103bd9b5_26">This is the code i wrote for making comments, in JS:</p><div class="code-block" data-lang="none"         >
+// Function for creating comments
+function createComment(postId, username, commentText) {
+  const requestObject = {
+    &quot;username&quot;: username,
+    &quot;commentText&quot;: commentText
+  };
+  fetch('/api/fartbook/' + postId + '/comment', { method: 'POST', body: JSON.stringify(requestObject), headers: {'Content-type': 'application/json; charset=UTF-8'} });
+  sleep(500);
+  fetchAndDisplayPosts();
+}
+</div></section><section class="chapter"><h2 id="103bd9b5_28" data-toc="103bd9b5_28">/api/fartbook/:id/search</h2><p id="103bd9b5_29">This is some code that i'm working on, that searches for a post and displays it.</p><div class="code-block" data-lang="none"         >
+const post = fetch(&quot;/api/fartbook/&quot; + postId + &quot;/search&quot;, { method: &quot;GET&quot;, headers: { &quot;Content-type&quot;: &quot;application/json; charset=UTF-8&quot;}})  .then((response) =&gt; response.json())
+.then((data) =&gt; {
+    document.getElementById(&quot;postText&quot;).value = data.post.postText;
+    document.getElementById(&quot;username&quot;).value = data.post.username;
+    data.post.comments.foreach((comment) =&gt; {
+        const commentElement = document.createElement(&quot;div&quot;);
+        commentElement.classList.add(&quot;comment&quot;);
+        commentElement.innerHTML = &quot;&quot;;
+        document.getElementById(&quot;comments&quot;).appendChild(commentElement);
+    });
+});
+</div></section><div class="last-modified"> Last modified: 19 October 2023</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom">  <a class="navigation-links__prev" href="apiendpoints.html">API Endpoints</a>   <a class="navigation-links__next" href="currentlyworkingon.html">Currently working on</a>  </div></article><div id="disqus_thread"></div></div></section></main></div>  <script src="https://resources.jetbrains.com/writerside/apidoc/6.1.5-b176/app.js"></script></body></html>
